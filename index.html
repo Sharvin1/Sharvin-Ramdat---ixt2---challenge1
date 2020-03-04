@@ -14,8 +14,32 @@
 
 			
 			Chart.defaults.global.defaultFontFamily = 'Monda';
-			Chart.defaults.global.defaultFontSize =  25;
+			Chart.defaults.global.defaultFontSize =  18;
 			Chart.defaults.global.defaultFontColor = '#AEFEC4';
+
+			Chart.pluginService.register({
+					id: "1",
+ 				 beforeDraw: function(chart) {
+
+			    	var width = chart.chart.width,
+			      	  height = chart.chart.height,
+			      	  ctx = chart.chart.ctx;
+
+				    ctx.restore();
+				    var fontSize = (height / 114).toFixed(2);
+				    ctx.font = fontSize + "em Monda";
+				    ctx.textBaseline = "middle";
+				    ctx.fillStyle = "#E3E0F2";
+
+				    var text = "65 300KM/h",
+				        textX = Math.round((width - ctx.measureText(text).width) / 2),
+				        textY = height / 2;
+
+				    ctx.fillText(text, textX, textY);
+				    ctx.save();
+				  }
+				});
+
 
 			function vehicleSpeedChart(){
 				var lineChart = document.getElementById('lineChart')
@@ -29,11 +53,11 @@
 							data: [0, 2300, 2956, 4000, 4698],
 
 							backgroundColor: [
-								'rgba(174, 254, 196, 0.2)'
+								'rgba(236, 205, 143, 0.1)'
 							],
 
 							borderColor: [
-								'rgba(174, 254, 196, 1)'	
+								'rgba(236, 205, 143, 1)'	
 							],
 
 							borderWidth: 2,
@@ -88,8 +112,8 @@
 				                'rgba(236, 205, 143, 1)',
 				                'rgba(143, 236, 219, 1)'
 							],
-							borderWidth: 3,
-							hoverBorderWidth: 4,
+							borderWidth: 2,
+							hoverBorderWidth: 3,
 							hoverBorderColor: 'black'
 						}]
 					},
@@ -188,7 +212,7 @@
 							data: [0, 18000, 27000, 33000, 38000],
 
 							borderColor: [
-								'rgba(174, 254, 196, 1)'	
+								'rgba(141, 68, 139, 1)'	
 							],
 
 							borderWidth: 3,
@@ -229,7 +253,7 @@
 
 		}
 
-	</script> -->
+	</script> 
 </head>
 
 <body>
@@ -279,15 +303,15 @@
 			</div>
 
 
-				<article class= "mainChart">
-					<h1 class= "titleChart">Vehicle speed</h1>
+				<article id= "fuel"class= "mainChart">
+					<h1 class= "titleChart">Vehicle Fuel</h1>
 					<h2 class= "subtitleChart">Fuel usage each year</h2>
 					<canvas id="lineChart" class= "gradientColor" width="320" height="215"></canvas>
 				</article>
 
-				<article class= "mainChart">
-					<h1 class= "titleChart">Geforce</h1>
-					<h2 class= "subtitleChart">Geforce around the vehicle</h2>
+				<article id= "gforce" class= "mainChart">
+					<h1 class= "titleChart">Gforce</h1>
+					<h2 class= "subtitleChart">Gforce around the vehicle</h2>
 					<canvas id="barChart" class= "gradientColor" width="320" height="215"></canvas>
 				</article>
 				
@@ -298,15 +322,15 @@
 				</article>
 
 				<article id= "acceleration" class= "mainChart">
-					
 						<h1 class= "titleChart">Acceleration</h1>
 						<h2 class= "subtitleChart">Acceleration within 4 seconds</h2>
 						<canvas id="accelerationLineChart" class= "gradientColor" width="320" height="215"></canvas>	
-					
 				</article>
-
-
 		</div>
+
+		<footer>
+			<a href= "#">Youtube</a> &#9472;<a href= "#">Instagram</a>&#9472;<a href= "#">Twitter</a>&#9472;<a href= "#">Facebook</a>&#9472;<a href= "#">LinkedIn</a>
+		</footer>
 
 </body>
 
