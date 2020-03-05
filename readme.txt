@@ -9,3 +9,4 @@ Ik heb voor Chart js gekozen, omdat dit een van de populaire chart tools is. Ik 
 Media Queries
 In de eerste instantie had ik wat moeite om mijn website responsive te maken, omdat de media queries niet goed werkte. Echter, is dit opgelost na veel googlen met de leraar. Ik heb mijn laatste media querie nauwelijks gebruikt, omdat dit niet nodig was en de design in principe hetzelfde was. 
 
+Ik merk echter dat mijn google chrome raart doet en ik mijn pagina moet refreshen in de inspector --> anders ziet wordt het een beetje vaag
