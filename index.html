@@ -29,7 +29,7 @@
 				    var fontSize = (height / 114).toFixed(2);
 				    ctx.font = fontSize + "em Monda";
 				    ctx.textBaseline = "middle";
-				    ctx.fillStyle = "#E3E0F2";
+				    ctx.fillStyle = "#AEFEC4";
 
 				    var text = "65 300KM/h",
 				        textX = Math.round((width - ctx.measureText(text).width) / 2),
@@ -41,15 +41,19 @@
 				});
 
 
+
+
+
+
 			function vehicleSpeedChart(){
-				var lineChart = document.getElementById('lineChart')
+				var lineChart = document.getElementById('lineChart').getContext('2d');
 				let vehicleSpeedChart = new Chart(lineChart, {
 
 					type: 'line',
 					data: {
 						labels: ['2030', '2031', '2032', '2033', '2034'],
 						datasets: [{
-							label: 'Vehicle speed',
+							label: 'Vehicle fuel',
 							data: [0, 2300, 2956, 4000, 4698],
 
 							backgroundColor: [
@@ -152,20 +156,27 @@
 
 					type: 'doughnut', //bar, horizontalBar, pie, line, doughnut, radar, 	polarArea
 					data: {
-						labels: ['Speed'],
+						labels: ['Speed', "empty"],
 						
 						datasets: [{
 							label: 'Vehicle speed',
-							data: [56000],
+							data: [6, 3 ],
 							backgroundColor: [
-							    'rgba(174, 254, 196, 1)'
+							    'rgba(143, 236, 219, 1)',
+							    'rgba(143, 236, 219, 0.1)'
+							],
+							borderColor: [
+							    'rgba(143, 236, 219, 1)'
+
 							]
+
+							
 						}]
 					},
 					options: {
-						circumference: 1.5 * Math.PI,
-						rotation: -1 * Math.PI,
-						cutoutPercentage: 90,
+						circumference: 2 * Math.PI,
+						rotation: -0.5 * Math.PI,
+						cutoutPercentage: 80,
 
 						legend:{
 							display: false
@@ -174,34 +185,13 @@
 					}
 
 				});
-				Chart.pluginService.register({
-					id: "1",
- 				 beforeDraw: function(chart) {
 
-			    	var width = chart.chart.width,
-			      	  height = chart.chart.height,
-			      	  ctx = chart.chart.ctx;
-
-				    ctx.restore();
-				    var fontSize = (height / 114).toFixed(2);
-				    ctx.font = fontSize + "em Monda";
-				    ctx.textBaseline = "middle";
-				    ctx.fillStyle = "#E3E0F2";
-
-				    var text = "65 300KM/h",
-				        textX = Math.round((width - ctx.measureText(text).width) / 2),
-				        textY = height / 2;
-
-				    ctx.fillText(text, textX, textY);
-				    ctx.save();
-				  }
-				});
 	
 			}
 
 
 			function accelerationChart(){
-				var lineAccelerationChart = document.getElementById('accelerationLineChart')
+				var lineAccelerationChart = document.getElementById('accelerationLineChart').getContext('2d');
 				let vehicleSpeedChart = new Chart(lineAccelerationChart, {
 
 					type: 'line',
@@ -242,14 +232,117 @@
 				})
 			}				
 
+			function CO2BarChart() {
+				var co2BarChart = document.getElementById('CO2BarChart').getContext('2d');
+				let co2Chart = new Chart(co2BarChart, {
+
+					type: 'bar', //bar, horizontalBar, pie, line, doughnut, radar, 	polarArea
+					data: {
+						labels: ['2', '4', '6', '8'],
+						datasets: [{
+							label: 'CO2 in kg',
+							data: [1000, 3000, 6500, 8700],
+
+							backgroundColor:[
+							    'rgba(80, 38, 167, 0.2)',
+				                'rgba(141, 68, 139, 0.2)',
+				                'rgba(236, 205, 143, 0.2)',
+				                'rgba(143, 236, 219, 0.2)'
+							],
+							borderColor:[
+							    'rgba(80, 38, 167, 1)',
+				                'rgba(141, 68, 139, 1)',
+				                'rgba(236, 205, 143, 1)',
+				                'rgba(143, 236, 219, 1)'
+							],
+							borderWidth: 2,
+							hoverBorderWidth: 3,
+							hoverBorderColor: 'black'
+						}]
+					},
+
+					options: {
+						plugins: {
+							1: false
+						},
+						title: {
+							display: false
+						},
+						legend:{
+							display: false
+						},
+						scales: {
+	        				yAxes: [{
+					            ticks: {
+					                max: 10000,
+					                min: 0,
+					                stepSize: 2000
+					            }
+					    	}]   
+						}    
+					}
 
 
+					
+
+				});
+			}
+		
+			function zeroto100Chart() {
+
+				var zerotohundred = document.getElementById('0-100kmChart').getContext('2d');
+
+				let co2Chart = new Chart(zerotohundred, {
+
+					type: 'line',
+					data: {
+						labels: ['0.02', '0.03', '0.04', '0.05'],
+						datasets: [{
+							label: 'Acceleration within 4 seconds',
+							data: [0, 30, 65, 100],
+
+							borderColor: [
+								'rgba(141, 68, 139, 1)'	
+							],
+
+							borderWidth: 3,
+	
+						}]
+					},
+					options: {
+						plugins: {
+							1: false
+						},						
+						title: {
+							display: true
+						},
+						legend:{
+							display: false
+						},
+						scales: {
+	        				yAxes: [{
+					            ticks: {
+					                max: 100,
+					                min: 0,
+					                stepSize: 20
+				            }
+					    	}]   
+						}    
+					}
+				
+				});
+				
+
+	
+			}
 
 		window.onload = function(){
 			geforceBarChart();
 			vehicleSpeedChart();
 			speedMeterDoughnutChart();
 			accelerationChart();
+			CO2BarChart();
+			zeroto100Chart();
 
 		}
 
@@ -264,6 +357,7 @@
 				<li><a href= "#"><img id= "menuAfbeelding"src= "images/menu.png" /></a></li>
 				<li><img id= "logo" src= "images/logo.png" /></li>
 				<input id= "zoekbalk" type= "text" placeholder= "Zoekopdracht.." /></li>
+				
 				<li><a href= "#"><img id= "zoekicon"src= "images/zoekbalk.png" /></a></li>
 				<li><a href= "#"><img id= "vraagteken"src= "images/questionmark.png" /></a></li>				
 			</ul> 
@@ -280,7 +374,7 @@
 					<li class= "textNav"><a id= "homeText" href= "# ">Home</a></li>
 					<li class= "lijn"></li>
 					<li class= "paddingNav"><a href= "#"><img id= "vehicleInfoBTN" src= "images/vehicle info.png"  /></a></li>
-					<li class= "textNav"><a id= "infoText"href= "# ">Vehicle information</a></li>
+					<li id= "select"class= "textNav"><a id= "infoText"href= "# ">Vehicle information</a></li>
 					<li class= "lijn"></li>
 					<li class= "paddingNav"><a href= "#"><img id= "vehicleSurrBTN" src= "images/vehicleSurr.png"  /></a></li>
 		
@@ -305,7 +399,7 @@
 
 				<article id= "fuel"class= "mainChart">
 					<h1 class= "titleChart">Vehicle Fuel</h1>
-					<h2 class= "subtitleChart">Fuel usage each year</h2>
+					<h2 class= "subtitleChart">Fuel usage each year (in KG)</h2>
 					<canvas id="lineChart" class= "gradientColor" width="320" height="215"></canvas>
 				</article>
 
@@ -317,15 +411,28 @@
 				
 				<article id= "speed" class= "mainChart">	
 						<h1 class= "titleChart">Speed</h1>
-						<h2 class= "subtitleChart">Current speed</h2>
+						<h2 class= "subtitleChart">Current speed (in KM/h)</h2>
 						<canvas id="speedMeterChart" class= "gradientColor" width="320" height="215"></canvas>     <!--de hoogte en breedte aanpassen-->
 				</article>
 
 				<article id= "acceleration" class= "mainChart">
 						<h1 class= "titleChart">Acceleration</h1>
-						<h2 class= "subtitleChart">Acceleration within 4 seconds</h2>
+						<h2 class= "subtitleChart">Acceleration within 4 seconds (in KM/h)</h2>
 						<canvas id="accelerationLineChart" class= "gradientColor" width="320" height="215"></canvas>	
 				</article>
+
+				<article id= "km100" class= "mainChart">	
+						<h1 class= "titleChart">0 - 100KM/h</h1>
+						<h2 class= "subtitleChart">Rocket from 0 -100 (in km/h)</h2>
+						<canvas id="0-100kmChart" class= "gradientColor" width="320" height="215"></canvas>     <!--de hoogte en breedte aanpassen-->
+				</article>
+
+				<article id= "CO2" class= "mainChart">
+						<h1 class= "titleChart">CO2 emissions</h1>
+						<h2 class= "subtitleChart">CO2 emission before leaving Earth (in seconds)</h2>
+						<canvas id="CO2BarChart" class= "gradientColor" width="320" height="215"></canvas>	
+				</article>
+			
 		</div>
 
 		<footer>

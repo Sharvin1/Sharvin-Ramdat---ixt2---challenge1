@@ -88,13 +88,17 @@ box-shadow: 5px 11px 18px 0px rgba(0,0,0,0.7);
 {
 	display: none;
 }
+#km100, #CO2
+{
+	display: none;
+}
 footer
 {
 	background-color: black;
 	display: flex;
 	flex-flow: row;
 	height: 25px;
-	padding: 20px 25%
+	padding: 20px 25%;
 }
 footer a
 {
@@ -109,12 +113,13 @@ footer a
 
 
 
-		@media only screen and (min-device-width: 650px) and (max-width: 1024px){
+		@media only screen and (min-device-width: 650px) {
 	
 		#menuAfbeelding
 		{
 			display: none;
 		}
+
 		#containerItems
 		{
 			width: 100%;
@@ -146,7 +151,11 @@ footer a
 		}
 		h1 
 		{
-			padding-bottom: 15px;
+			padding-bottom: 20px;
+		}
+		article h2
+		{
+			font-size: 1.6em;
 		}
 		#fuel
 		{
@@ -271,21 +280,88 @@ footer a
 
 		}
 
-		canvas
-		{
-			font-size:;
-		}
-
-}
-
-@media only screen and  (min-device-width: 1025px) and (max-width: 2000px){
-
-
-	body
-	{
-		background-color:blue;
-
 	}
-}
+
+					@media only screen and  (min-device-width: 1025px){
 
 
+							#km100, #CO2
+							{
+								display: block;
+								position: relative;
+					    		bottom: 40px;
+								
+
+							}
+							footer
+							{
+									padding: 20px 30%;
+							}
+							article h1
+							{
+								padding-bottom: 25px;
+							}
+
+					}		
+
+						@media only screen and  (min-device-width: 1300px){
+							
+							#containerItems
+							{
+
+								grid-template-columns: 150px 3fr 3fr 3fr;
+								grid-template-areas: 
+								" header text text text"
+								" header chart1 chart2 chart3"
+								" header chart4 chart5";
+							}
+							#containerText
+							{
+								grid-column: 2/5;
+					
+							}
+							#acceleration
+							{
+								margin-top: 110px;
+ 								grid-area: text;
+								grid-column-start: 5;
+							}
+
+							#speed{
+							    margin-top: 0px;
+  								margin-bottom: 90px;
+
+							}
+							#acceleration, #gforce, #fuel
+							{
+								grid-row-end: 2;
+							}
+							#vraagteken
+							{
+								max-width: 34%;
+							}
+							#zoekicon
+							{
+								left: 87%;
+  								bottom: 3px;
+								max-width: 13%;	
+							}
+							#zoekbalk
+							{
+								left: 45%;
+							}
+								
+
+								@media only screen and  (min-device-width: 1700px){
+
+									#zoekicon
+									{
+										bottom: 8px;
+										max-width: 11%;
+									}
+
+									#vraagteken
+									{
+										max-width: 30%;
+									}									
+								}
